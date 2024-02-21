@@ -1,0 +1,47 @@
+{
+    "author": "Kyle Puhger",
+    "email": "krpuhger@gmail.com",
+    "author_github_handle": "kpeez",
+    "project_name": "example-project",
+    "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
+    "project_description": "This is a template repository for Python projects that use Poetry for their dependency management.",
+    "create_models_directory": [
+        "y",
+        "n"
+    ],
+    "create_reports_directory": [
+        "y",
+        "n"
+    ],
+    "include_github_actions": [
+        "n",
+        "y"
+    ],
+    "publish_to": [
+        "none",
+        "pypi"
+    ],
+    "mkdocs": [
+        "y",
+        "n"
+    ],
+    "tox": [
+        "n",
+        "y"
+    ],
+    "codecov": [
+        "n",
+        "y"
+    ],
+    "dockerfile": [
+        "n",
+        "y"
+    ],
+    "open_source_license": [
+        "MIT license",
+        "BSD license",
+        "Apache Software License 2.0",
+        "GNU General Public License v3",
+        "Not open source"
+    ]
+}
