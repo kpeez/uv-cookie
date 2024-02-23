@@ -39,7 +39,7 @@ test: ## Test the code with pytest
 
 .PHONY: docs
 docs: ## Build and serve the documentation
-	@source .venv/bin/activate
+	@. .venv/bin/activate
 	@mkdocs serve
 
 .PHONY: docs-test
@@ -49,7 +49,7 @@ docs-test: ## Test if documentation can be built without warnings or errors
 .PHONY: update	
 update: ## Update pre-commit hooks
 	@echo "⚙️ Updating environment and pre-commit hooks"
-	@source .venv/bin/activate
+	@. .venv/bin/activate
 	@pre-commit autoupdate
 
 .PHONY: help
