@@ -10,12 +10,13 @@ authors = [{name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}"}]
 readme = "README.md"
 license = {file = "LICENSE"}
 dependencies = [
+  "pip",
+  "uv",
   "numpy",
   "pandas",
   "pyarrow",
   "matplotlib",
   "seaborn",
-  "ipykernel",
   "notebook",
   "scikit-learn",
   {% if cookiecutter.create_models_directory == 'y' -%}
@@ -27,6 +28,7 @@ dependencies = [
 dev = [
   "ruff",
   "mypy",
+  "typing_extensions",
   "pytest",
   "pre-commit",
   "pandas-stubs",
