@@ -2,16 +2,16 @@
 
 install: ## Install the virtual environment and  pre-commit hooks
 	@echo "📦 Creating virtual environment"
-	@pip install uv
-	@uv venv
+	@pip show uv || pip install uv
+	@uv venv --seed
 	@echo "📦 Installing dependencies"
 	@uv pip compile -o requirements.txt pyproject.toml
 	@uv pip sync requirements.txt
 
 install-dev: ## Install the virtual environment and  pre-commit hooks
 	@echo "📦 Creating virtual environment"
-	@pip install uv
-	@uv venv
+	@pip show uv || pip install uv
+	@uv venv --seed
 	@echo "📦 Installing dependencies"
 	@uv pip compile -o requirements.txt pyproject.toml
 	@uv pip compile -o requirements-dev.txt --extra=dev pyproject.toml
