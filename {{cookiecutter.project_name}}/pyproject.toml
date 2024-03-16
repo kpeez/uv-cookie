@@ -11,14 +11,13 @@ readme = "README.md"
 license = {file = "LICENSE"}
 dependencies = [
   "pip",
-  "uv",
   "numpy",
   "pandas",
   "pyarrow",
   "matplotlib",
   "seaborn",
-  "notebook",
   "scikit-learn",
+  "notebook",
   {% if cookiecutter.create_models_directory == 'y' -%}
   "torch",
   {% endif -%}
