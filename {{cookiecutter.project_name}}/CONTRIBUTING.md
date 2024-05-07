@@ -55,7 +55,8 @@ If you are proposing a new feature:
 Ready to contribute? Here\'s how to set up
 `{{cookiecutter.project_name}}` for local development.
 Please note this documentation assumes you already have
-`poetry` and `Git` installed and ready to go.
+`uv` and `git` installed and ready to go. If you don't have `uv` installed it be when running
+`make install`.
 
 | 1. Fork the [{{cookiecutter.project_name}}] repo on
   GitHub.
@@ -80,11 +81,16 @@ Please note this documentation assumes you already have
 > pyenv local <x.y.z>
 > ```
 >
+> If you are using `conda`, create a new environment with the required python version.
+>
+> ``` bash
+> conda create -n {{cookiecutter.project_name}} python=<x.y.z
+>```
+>
 > Then, install and activate the environment with:
 >
 > ``` bash
-> poetry install
-> poetry shell
+> make install-dev
 > ```
 
 | 4. Create a branch for local development:
@@ -102,7 +108,7 @@ Please note this documentation assumes you already have
   formatting tests.
 
 > ``` bash
-> make lint
+> make check
 > ```
 
 | 7. Now, validate that all unit tests are passing:
