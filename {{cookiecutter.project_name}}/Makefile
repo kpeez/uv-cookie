@@ -1,16 +1,20 @@
-.PHONY: install install-dev check test docs docs-test update help
+.PHONY: check_uv, install install-dev check test docs docs-test update help
 
-install: ## Install the virtual environment and  pre-commit hooks
+check_uv: # install `uv` if not installed
+	@if ! command -v uv &> /dev/null 2>&1; then \
+		echo "uv is not installed, installing now..."; \
+		curl -LsSf https://astral.sh/uv/install.sh | sh; \
+	fi
+
+install: check_uv ## Install the virtual environment and  pre-commit hooks
 	@echo "📦 Creating virtual environment"
-	@pip show uv || pip install uv
 	@uv venv --seed
 	@echo "📦 Installing dependencies"
 	@uv pip compile -o requirements.txt pyproject.toml
 	@uv pip sync requirements.txt
 
-install-dev: ## Install the virtual environment and  pre-commit hooks
+install-dev: check_uv ## Install the virtual environment and  pre-commit hooks
 	@echo "📦 Creating virtual environment"
-	@pip show uv || pip install uv
 	@uv venv --seed
 	@echo "📦 Installing dependencies"
 	@uv pip compile -o requirements.txt pyproject.toml
