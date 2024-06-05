@@ -13,31 +13,32 @@
 # See https://github.com/pre-commit/pre-commit
 
 repos:
-# Standard hooks
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.6.0
-  hooks:
-  - id: check-added-large-files
-  - id: check-case-conflict
-  - id: check-docstring-first
-  - id: check-merge-conflict
-  - id: check-symlinks
-  - id: check-toml
-  - id: debug-statements
-  - id: mixed-line-ending
-  - id: requirements-txt-fixer
-  - id: trailing-whitespace
+  # Standard hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: debug-statements
+      - id: mixed-line-ending
+      - id: requirements-txt-fixer
+      - id: trailing-whitespace
 
- # Mypy, the static type checker
-- repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.8.0
-  hooks:
-  - id: mypy
-    exclude: ^(docs/)
+    # Mypy, the static type checker
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.10.0"
+    hooks:
+      - id: mypy
+        exclude: ^(docs/)
 
-# Ruff, the Ruff formatter
-- repo: https://github.com/charliermarsh/ruff-pre-commit
-    # Ruff version.
-  rev: "v0.4.3"
-  hooks:
-    - id: ruff
+  # Ruff, the Ruff formatter
+  - repo:
+      https://github.com/charliermarsh/ruff-pre-commit
+      # Ruff version.
+    rev: "v0.4.8"
+    hooks:
+      - id: ruff
