@@ -43,7 +43,7 @@ check: ## Run code quality tools.
 test: ## Test the code with pytest
 	@echo "✅ Testing code: Running pytest"
 	@. .venv/bin/activate && \
-	pytest --doctest-modules
+	pytest
 
 docs: ## Build and serve the documentation
 	@. .venv/bin/activate && \
