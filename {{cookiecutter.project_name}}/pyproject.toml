@@ -1,6 +1,5 @@
 [project]
 dependencies = [
-  "pip",
   "numpy",
   "pandas",
   "pyarrow",
@@ -17,6 +16,7 @@ description = "{{cookiecutter.project_description}}"
 authors = [{ name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" }]
 readme = "README.md"
 license = { file = "LICENSE" }
+requires-python = ">=3.11"
 
 [project.optional-dependencies]
 dev = [
@@ -79,14 +79,12 @@ select = [
 ]
 fixable = ["ALL"]
 ignore = [
-  # too many arguments
-  "PLR0913",
-  # too many positional arguments
-  "PLR0917",
-  # magic number
-  "PLR2004",
-  # line too long
-  "E501",
+  "PLR0913", # too many arguments
+  "PLR0914", # too many local variables
+  "PLR0917", # too many positional arguments
+  "PLR2004", # magic number
+  "PLW2901", # pylint - for loop variable overwritten by assignment target
+  "E501",    # line too long
 ]
 
 [tool.ruff.lint.per-file-ignores]
