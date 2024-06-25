@@ -28,7 +28,7 @@ install_dev: check_uv ## Install the virtual environment and  pre-commit hooks
 		pre-commit install && \
 		mypy --install-types --non-interactive
 
-check: ## Run code quality tools.
+check: ## Run code quality tools
 	@echo "🔒 Compiling requirements from 'pyproject.toml':"
 	@uv pip compile -o requirements.txt pyproject.toml
 	@uv pip compile -o requirements-dev.txt --extra=dev pyproject.toml
