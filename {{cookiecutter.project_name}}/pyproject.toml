@@ -1,22 +1,21 @@
 [project]
-dependencies = [
-  "numpy",
-  "pandas",
-  "pyarrow",
-  "matplotlib",
-  "seaborn",
-  "scikit-learn",
-  "notebook",
-  {% if cookiecutter.create_models_directory == 'y' -%}
-  "torch",
-  {% endif -%}
-]name = "{{cookiecutter.project_slug}}"
+name = "{{cookiecutter.project_slug}}"
 version = "0.0.1"
 description = "{{cookiecutter.project_description}}"
 authors = [{ name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" }]
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.11"
+dependencies = [
+  "numpy",
+  "pandas",  
+  "pyarrow",
+  "matplotlib",  
+  "seaborn",  
+  "scikit-learn",  
+  "notebook",  
+  {% if cookiecutter.create_models_directory == 'y' -%} "torch",  {% endif -%}
+  ]
 
 [project.optional-dependencies]
 dev = [
@@ -100,7 +99,6 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.mypy]
-{% if cookiecutter.codecov == "y"-%}
 files = ["{{cookiecutter.project_slug}}"]
 plugins = "numpy.typing.mypy_plugin"
 disallow_untyped_defs = true
@@ -115,6 +113,6 @@ exclude = [".venv"]
 skip_empty = true
 
 [tool.coverage.run]
-
+{% if cookiecutter.codecov == "y"-%}
 {% endif%}branch = true
 source = ["{{cookiecutter.project_slug}}"]
