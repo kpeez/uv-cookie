@@ -34,7 +34,7 @@ pip install cookiecutter
 Next, install the template directly from this repo:
 
 ```bash
-cookiecutter https://github.com/kpeez/cookiecutter-uv.git
+cookiecutter https://github.com/kpeez/uv-cookie.git
 ```
 
 Finally, install the environment and the pre-commit hooks with
