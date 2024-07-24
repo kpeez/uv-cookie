@@ -112,7 +112,8 @@ exclude = [".venv"]
 [tool.coverage.report]
 skip_empty = true
 
-[tool.coverage.run]
 {% if cookiecutter.codecov == "y"-%}
-{% endif%}branch = true
+[tool.coverage.run]
+branch = true
 source = ["{{cookiecutter.project_slug}}"]
+{% endif%}
