@@ -17,8 +17,8 @@ dependencies = [
   {% if cookiecutter.create_models_directory == 'y' -%} "torch",  {% endif -%}
   ]
 
-[project.optional-dependencies]
-dev = [
+[tool.uv]
+dev-dependencies = [
   "ruff",
   "pytest",
   "pre-commit",
