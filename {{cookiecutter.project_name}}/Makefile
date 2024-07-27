@@ -19,7 +19,7 @@ install-dev: check_uv ## Install the virtual environment and  pre-commit hooks
 	@echo "📦 Creating virtual environment and install dependencies"
 	@uv venv --seed && uv sync
 	@uv pip compile pyproject.toml -o requirements.txt
-	@echo "📦 Installing pre-commit and mypy.."
+	@echo "🛠️ Installing developer tools..."
 	@uvx pre-commit install
 	@. .venv/bin/activate && mypy --install-types --non-interactive
 
