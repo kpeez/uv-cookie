@@ -17,17 +17,15 @@ install: check_uv ## Install the virtual environment and  pre-commit hooks
 
 install-dev: check_uv ## Install the virtual environment and  pre-commit hooks
 	@echo "📦 Creating virtual environment and install dependencies"
-	@uv venv --seed && uv sync
+	@uv sync
 	@uv pip compile pyproject.toml -o requirements.txt
 	@echo "🛠️ Installing developer tools..."
 	@uvx pre-commit install
 	@. .venv/bin/activate && mypy --install-types --non-interactive
 
 check: ## Run code quality tools
-	@echo "🔒 Compiling requirements from 'pyproject.toml':"
-	@uv pip compile -o requirements.txt pyproject.toml
 	@echo "⚡️ Linting code: Running ruff"
-	@uv run ruff check .
+	@uvx ruff check .
 	@echo "🧹 Checking code: Running pre-commit"
 	@uvx pre-commit run --all-files
 	@echo "🔬 Static type checking: Running mypy"
