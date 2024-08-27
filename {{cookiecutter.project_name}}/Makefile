@@ -1,4 +1,4 @@
-.PHONY: check_uv install check test docs docs_test update help
+.PHONY: check_uv install check test docs docs-test update help
 
 check_uv: # install `uv` if not installed
 	@if ! command -v uv &> /dev/null 2>&1; then \
@@ -6,7 +6,6 @@ check_uv: # install `uv` if not installed
 		curl -LsSf https://astral.sh/uv/install.sh | sh; \
 	fi
 	@uv self update
-
 
 install: check_uv ## Install the virtual environment and  pre-commit hooks
 	@echo "📦 Creating virtual environment"
