@@ -1,4 +1,4 @@
-.PHONY: check_uv, install install-dev check test docs docs_test update help
+.PHONY: check_uv install check test docs docs_test update help
 
 check_uv: # install `uv` if not installed
 	@if ! command -v uv &> /dev/null 2>&1; then \
@@ -7,17 +7,10 @@ check_uv: # install `uv` if not installed
 	fi
 	@uv self update
 
+
 install: check_uv ## Install the virtual environment and  pre-commit hooks
 	@echo "📦 Creating virtual environment"
-	@uv venv --seed
-	@echo "📦 Installing dependencies"
-	@. .venv/bin/activate && \
-		uv pip install -r requirements.txt && \
-		uv pip install -e .
-
-install-dev: check_uv ## Install the virtual environment and  pre-commit hooks
-	@echo "📦 Creating virtual environment and install dependencies"
-	@uv sync
+	@uv sync --all-extras
 	@uv pip compile pyproject.toml -o requirements.txt
 	@echo "🛠️ Installing developer tools..."
 	@uvx pre-commit install
@@ -43,7 +36,8 @@ docs-test: ## Test if documentation can be built without warnings or errors
 	@uvx mkdocs build --strict
 
 update: ## Update pre-commit hooks
-	@echo "⚙️ Updating environment and pre-commit hooks"
+	@echo "⚙️ Updating dependencies and pre-commit hooks"
+	@uv lock --upgrade
 	@uvx pre-commit autoupdate
 
 help:
