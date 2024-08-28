@@ -15,13 +15,18 @@ install: check_uv ## Install the virtual environment and  pre-commit hooks
 	@uvx pre-commit install
 	@. .venv/bin/activate && mypy --install-types --non-interactive
 
+requirements: check_uv
+	@echo "Making requirements.txt and requirements-cpu.txt"
+	@uv pip compile pyproject.toml -o requirements.txt -f $(DGL_URL) --python-platform=linux
+	@uv pip compile pyproject.toml -o requirements-cpu.txt --python-platform=macos
+
 check: ## Run code quality tools
 	@echo "⚡️ Linting code: Running ruff"
 	@uvx ruff check .
 	@echo "🧹 Checking code: Running pre-commit"
 	@uvx pre-commit run --all-files
 	@echo "🔬 Static type checking: Running mypy"
-	@uvx mypy .
+	@. .venv/bin/activate && mypy --install-types --non-interactive
 
 test: ## Test the code with pytest
 	@echo "✅ Testing code: Running pytest"
