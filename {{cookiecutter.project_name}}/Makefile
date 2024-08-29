@@ -1,7 +1,7 @@
 .PHONY: check_uv install check test docs docs-test update help
 
 check_uv: # install `uv` if not installed
-	@if ! command -v uv &> /dev/null 2>&1; then \
+	@if ! command -v uv > /dev/null 2>&1; then \
 		echo "uv is not installed, installing now..."; \
 		curl -LsSf https://astral.sh/uv/install.sh | sh; \
 	fi
