@@ -10,21 +10,20 @@ check_uv: # install `uv` if not installed
 install: check_uv ## Install the virtual environment and  pre-commit hooks
 	@echo "📦 Creating virtual environment"
 	@uv sync --all-extras
-	@uv pip compile pyproject.toml -o requirements.txt
 	@echo "🛠️ Installing developer tools..."
-	@uvx pre-commit install
+	@uv run run pre-commit install
 	@. .venv/bin/activate && mypy --install-types --non-interactive
 
 requirements: check_uv
 	@echo "Making requirements.txt and requirements-cpu.txt"
-	@uv pip compile pyproject.toml -o requirements.txt -f $(DGL_URL) --python-platform=linux
+	@uv pip compile pyproject.toml -o requirements.txt --python-platform=linux
 	@uv pip compile pyproject.toml -o requirements-cpu.txt --python-platform=macos
 
 check: ## Run code quality tools
 	@echo "⚡️ Linting code: Running ruff"
 	@uv run ruff check .
 	@echo "🧹 Checking code: Running pre-commit"
-	@uv rnu pre-commit run --all-files
+	@uv run pre-commit run --all-files
 	@echo "🔬 Static type checking: Running mypy"
 	@. .venv/bin/activate && mypy --install-types --non-interactive
 
