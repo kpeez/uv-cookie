@@ -1,4 +1,4 @@
-.PHONY: check_uv install check test docs docs-test update help
+.PHONY: check_uv install requirements check test docs docs-test update help
 
 check_uv: # install `uv` if not installed
 	@if ! command -v uv > /dev/null 2>&1; then \
@@ -9,15 +9,14 @@ check_uv: # install `uv` if not installed
 
 install: check_uv ## Install the virtual environment and  pre-commit hooks
 	@echo "📦 Creating virtual environment"
-	@uv sync --all-extras
+	@uv sync --all-extras --frozen
 	@echo "🛠️ Installing developer tools..."
-	@uv run run pre-commit install
+	@uv run pre-commit install
 	@. .venv/bin/activate && mypy --install-types --non-interactive
 
 requirements: check_uv
-	@echo "Making requirements.txt and requirements-cpu.txt"
-	@uv pip compile pyproject.toml -o requirements.txt --python-platform=linux
-	@uv pip compile pyproject.toml -o requirements-cpu.txt --python-platform=macos
+	@echo "Exporting dependencies to requirements.txt..."
+	@uv export --output-file requirements.txt
 
 check: ## Run code quality tools
 	@echo "⚡️ Linting code: Running ruff"
