@@ -17,8 +17,8 @@ dependencies = [
   {% if cookiecutter.create_models_directory == 'y' -%} "torch",  {% endif -%}
   ]
 
-[tool.uv]
-dev-dependencies = [
+[project.optional-dependencies]
+dev = [
   "ruff",
   "pytest",
   "pre-commit",
@@ -33,12 +33,15 @@ dev-dependencies = [
   {% if cookiecutter.tox == 'y' -%}
   "tox",
   {% endif -%}
-  {% if cookiecutter.mkdocs == 'y' -%}
+]
+{% if cookiecutter.mkdocs == 'y' -%}
+docs = [
   "mkdocs",
   "mkdocs-material",
   "mkdocstrings[python]"
-  {% endif -%}
 ]
+{% endif -%}
+
 
 [project.urls]
 repository = "https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}"
