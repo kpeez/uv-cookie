@@ -1,9 +1,11 @@
-# datasets/docss
-datasets
+# datasets/docs
+data/
+datasets/
 *.csv
 
 # IDE temp files #
 .vscode/
+.cursor/
 .ipynb_checkpoints
 *.egg-info
 
