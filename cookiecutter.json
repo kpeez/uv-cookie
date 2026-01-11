@@ -5,13 +5,9 @@
     "project_name": "example-project",
     "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
     "project_description": "This is a template repository for Python projects that uses the `uv` package installer and resolver.",
-    "create_models_directory": [
-        "y",
-        "n"
-    ],
-    "create_reports_directory": [
-        "y",
-        "n"
+    "project_type": [
+        "ml",
+        "data-science"
     ],
     "include_github_actions": [
         "n",
@@ -24,10 +20,6 @@
     "mkdocs": [
         "y",
         "n"
-    ],
-    "tox": [
-        "n",
-        "y"
     ],
     "codecov": [
         "n",

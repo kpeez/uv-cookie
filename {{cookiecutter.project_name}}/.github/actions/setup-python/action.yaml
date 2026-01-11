@@ -1,15 +1,15 @@
 name: "Setup Python Environment"
-description: "Set up Python, uv, and install project dependencies (lockfile-true)"
+description: "Set up Python, uv, and install project dependencies"
 
 inputs:
   python-version:
     description: "Python version"
     required: true
-    default: "3.12"
+    default: "3.13"
   uv-version:
     description: "uv version"
     required: true
-    default: "0.8.13"
+    default: "latest"
   install-args:
     description: "Extra args for uv sync (e.g., --group ci)"
     required: false

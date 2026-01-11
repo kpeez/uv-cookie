@@ -5,36 +5,44 @@ description = "{{cookiecutter.project_description}}"
 authors = [{ name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" }]
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.11"
+requires-python = ">=3.13"
+{% if cookiecutter.project_type == 'data-science' -%}
 dependencies = [
-  "numpy",
-  "polars",
-  "matplotlib",  
-  "seaborn",  
-  {% if cookiecutter.create_models_directory == 'y' -%} "torch",  {% endif -%}
-  ]
-
+    "numpy",
+    "polars",
+    "pyarrow",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+    "notebook",
+]
+{% else -%}
+dependencies = [
+    "torch",
+    "numpy",
+]
+{% endif %}
 [dependency-groups]
 dev = [
-  "ruff",
-  "ty",
-  "pytest",
-  "pre-commit",
-  {% if cookiecutter.tox == 'y' -%}
-  "uv-tox",
-  {% endif -%}
+    "ruff",
+    "ty",
+    "pytest",
+    "pre-commit",
+    "ipykernel",
 ]
 {% if cookiecutter.mkdocs == 'y' -%}
 docs = [
-  "mkdocs",
-  "mkdocs-material",
-  "mkdocstrings[python]"
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",
 ]
 {% endif -%}
+
 [project.urls]
 repository = "https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}"
+{% if cookiecutter.mkdocs == 'y' -%}
 documentation = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
-
+{% endif %}
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -45,30 +53,30 @@ addopts = "--log-cli-level=INFO -sv --durations=0"
 
 [tool.ruff]
 line-length = 100
-target-version = "py311"
+target-version = "py313"
 
 [tool.ruff.lint]
 select = [
-  "E",   # pycodestyle
-  "W",
-  "F",   # pyflakes
-  "PL",  # pylint
-  "I",   # isort
-  "B",   # flake8-bugbear
-  "SIM", # flake8-simplify
-  "C4",  # flake8-comprehensions
-  "RUF", # ruff
+    "E",   # pycodestyle
+    "W",
+    "F",   # pyflakes
+    "PL",  # pylint
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "SIM", # flake8-simplify
+    "C4",  # flake8-comprehensions
+    "RUF", # ruff
 ]
 fixable = ["ALL"]
 ignore = [
-  "PLR0913", # too many arguments
-  "PLR0914", # too many local variables
-  "PLR0917", # too many positional arguments
-  "PLR2004", # magic number
-  "PLW2901", # for loop variable overwritten by assignment target
-  "E501",    # line too long
-  "B008",    # function-call-in-default-argument
-  "C408",    # unnecessary collection call
+    "PLR0913", # too many arguments
+    "PLR0914", # too many local variables
+    "PLR0917", # too many positional arguments
+    "PLR2004", # magic number
+    "PLW2901", # for loop variable overwritten by assignment target
+    "E501",    # line too long
+    "B008",    # function-call-in-default-argument
+    "C408",    # unnecessary collection call
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -82,3 +90,6 @@ quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
+
+[tool.ty]
+python-version = "3.13"
