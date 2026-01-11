@@ -1,0 +1,42 @@
+set shell := ["bash", "-euo", "pipefail", "-c"]
+
+default: help
+
+install:
+    echo "📦 Creating virtual environment"
+    uv sync --all-groups
+    echo "🛠️ Installing developer tools..."
+    uv run pre-commit install
+
+# Run code quality tools (ruff and ty)
+check:
+    @echo "🧹 Formatting code: Running ruff format"
+    @uv run ruff format
+    @echo "⚡️ Linting code: Running ruff check"
+    @uv run ruff check .
+    @echo "🔎 Type checking: Running ty"
+    @uv run ty check .
+
+# Test the code with pytest
+test:
+    @echo "🧪 Testing code: Running pytest"
+    @uv run pytest
+
+{% if cookiecutter.mkdocs == 'y' -%}
+# Build and serve the documentation locally
+docs:
+    @uv run mkdocs serve
+
+# Test if documentation can be built without errors
+docs-test:
+    @echo "⚙️ Testing documentation build"
+    @uv run mkdocs build --strict
+{% endif %}
+# Update dependencies and pre-commit hooks
+update:
+    @echo "⚙️ Updating dependencies and pre-commit hooks"
+    uv lock --upgrade
+    uv run pre-commit autoupdate
+
+help:
+    @just --list

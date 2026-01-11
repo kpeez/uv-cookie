@@ -1,17 +1,22 @@
-# from ryxcommar blog: https://ryxcommar.com/2024/02/15/how-to-cut-your-python-docker-builds-in-half-with-uv/
-
-FROM python:3.11
+FROM python:3.13-slim
 
 # Install uv
-ENV VIRTUAL_ENV=/usr/local
-ADD --chmod=755 https://astral.sh/uv/install.sh /install.sh
-RUN /install.sh && rm /install.sh
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-# Install Python dependencies 
-COPY requirements.txt /requirements.txt
-RUN /root/.cargo/bin/uv pip install --no-cache -r requirements.txt
- 
-# Copy Python code to the Docker image
-COPY {{cookiecutter.project_slug}} /code/{{cookiecutter.project_slug}}/
+# Set working directory
+WORKDIR /app
 
-CMD [ "python", "{{cookiecutter.project_slug}}/foo.py"]
+# Copy dependency files
+COPY pyproject.toml uv.lock ./
+
+# Install dependencies
+RUN uv sync --frozen --no-dev --no-install-project
+
+# Copy source code
+COPY {{cookiecutter.project_slug}} ./{{cookiecutter.project_slug}}/
+
+# Install the project
+RUN uv sync --frozen --no-dev
+
+# Set entrypoint
+ENTRYPOINT ["uv", "run", "python", "-m", "{{cookiecutter.project_slug}}"]
