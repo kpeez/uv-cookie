@@ -1,23 +1,24 @@
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+  - repo: builtin
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
-      - id: check-docstring-first
       - id: check-merge-conflict
-      - id: check-symlinks
       - id: check-toml
-      - id: debug-statements
+      - id: check-yaml
       - id: mixed-line-ending
+      - id: end-of-file-fixer
       - id: trailing-whitespace
+      - id: check-merge-conflict
+      - id: check-executables-have-shebangs
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.4
+    rev: "v0.14.14"
     hooks:
       - id: ruff
-        args: [--fix, --exit-non-zero-on-fix]
+        args: [--exit-non-zero-on-fix, --config=pyproject.toml]
       - id: ruff-format
+        args: [--config=pyproject.toml]
 
   - repo: local
     hooks:

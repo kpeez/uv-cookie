@@ -27,8 +27,7 @@ dev = [
     "ruff",
     "ty",
     "pytest",
-    "pre-commit",
-    "ipykernel",
+    "prek",
 ]
 {% if cookiecutter.mkdocs == 'y' -%}
 docs = [

@@ -5,8 +5,8 @@ My cookiecutter repo for generating python projects using `uv` for package manag
 ## Features
 
 - [uv](https://github.com/astral-sh/uv) for package management
-- Pre-commit hooks with [pre-commit](https://pre-commit.com/)
-- Linting and formatting [ruff](https://github.com/charliermarsh/ruff) using the following rules:
+- Pre-commit hooks with [prek](https://github.com/j178/prek)
+- Linting and formatting [ruff](https://github.com/astral-sh/ruff) using the following rules:
   - pycodestyle
   - pyflakes
   - pylint
@@ -16,9 +16,9 @@ My cookiecutter repo for generating python projects using `uv` for package manag
   - flake8-comprehensions
   - ruff
 
-- Static type checking with [mypy](https://mypy.readthedocs.io/en/stable/)
+- Static type checking with [ty](https://github.com/astral-sh/ty)
 - Publishing to [Pypi](https://pypi.org/)
-- Testing with [pytest](https://docs.pytest.org/en/7.1.x/)
+- Testing with [pytest](https://docs.pytest.org/en/stable/)
 - Test coverage with [codecov](https://about.codecov.io/)
 - Documentation with [MkDocs](https://www.mkdocs.org/)
 - Containerization with [Docker](https://www.docker.com/)
@@ -40,7 +40,7 @@ cookiecutter https://github.com/kpeez/uv-cookie.git
 Finally, install the environment and the pre-commit hooks with
 
 ```bash
-make install
+just install
 ```
 
 ## Acknowledgements
