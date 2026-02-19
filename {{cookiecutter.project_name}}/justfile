@@ -13,7 +13,7 @@ check:
     @echo "🧹 Formatting code: Running ruff format"
     @uv run ruff format
     @echo "⚡️ Linting code: Running ruff check"
-    @uv run ruff check . --fix
+    @uv run ruff check --fix
     @echo "🔎 Type checking: Running ty"
     @uv run ty check .
 
