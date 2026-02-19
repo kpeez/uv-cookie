@@ -20,11 +20,11 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: Cache pre-commit
+      - name: Cache prek
         uses: actions/cache@v4
         with:
-          path: ~/.cache/pre-commit
-          key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
+          path: ~/.cache/prek
+          key: prek-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
 
       - name: Setup Python/uv + deps
         uses: ./.github/actions/setup-python
@@ -33,7 +33,7 @@ jobs:
           install-args: "--frozen"
 
       - name: Run checks
-        run: uv run pre-commit run --all-files
+        run: uv run prek run --all-files
 
   test:
     if: github.event_name == 'push' || github.event.pull_request.draft == false
