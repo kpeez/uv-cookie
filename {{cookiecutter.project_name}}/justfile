@@ -6,14 +6,14 @@ install:
     echo "📦 Creating virtual environment"
     uv sync --all-groups
     echo "🛠️ Installing developer tools..."
-    uv run pre-commit install
+    uv run prek install
 
 # Run code quality tools (ruff and ty)
 check:
     @echo "🧹 Formatting code: Running ruff format"
     @uv run ruff format
     @echo "⚡️ Linting code: Running ruff check"
-    @uv run ruff check .
+    @uv run ruff check . --fix
     @echo "🔎 Type checking: Running ty"
     @uv run ty check .
 
@@ -32,11 +32,11 @@ docs-test:
     @echo "⚙️ Testing documentation build"
     @uv run mkdocs build --strict
 {% endif %}
-# Update dependencies and pre-commit hooks
+# Update dependencies and prek hooks
 update:
-    @echo "⚙️ Updating dependencies and pre-commit hooks"
+    @echo "⚙️ Updating dependencies and prek hooks"
     uv lock --upgrade
-    uv run pre-commit autoupdate
+    uv run prek autoupdate
 
 help:
     @just --list

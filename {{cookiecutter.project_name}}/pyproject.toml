@@ -95,6 +95,3 @@ python-version = "3.13"
 
 [tool.ty.src]
 include = ["{{cookiecutter.project_name}}", "tests"]
-
-[tool.ty.test]
-include = ["tests"]
